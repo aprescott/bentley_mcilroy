@@ -21,23 +21,6 @@ describe BentleyMcIlroy::Codec do
     # "aaaa" should compress down to ["a", [0, 3]]
     it "picks the longest match on clashes"
 
-    #                       11
-    #         0123    45678901
-    # encode("xaby", "abababab", 1) would be more efficiently encoded as
-    #
-    # ["x", [1, 2], [4, 6]]
-    #
-    # where [4, 6] refers to the decoded target itself, in the style of
-    # VCDIFF. See RFC3284 section 3, where COPY 4, 4 + COPY 12, 24 is used.
-    #
-    # this should probably only be allowed with a flag or something.
-    #
-    # note that compress is more efficient for this type of input,
-    # since the "source" is everything to the left of the current position:
-    #
-    # compress("abababab", 1) #=> ["ab", [0, 6]]
-    it "can refer to its own target"
-
     it "handles binary" do
       codec = BentleyMcIlroy::Codec
       str = ("\x52\303\x66" * 3)
@@ -68,6 +51,23 @@ describe BentleyMcIlroy::Codec do
   end
   
   describe ".encode" do
+    #                       11
+    #         0123    45678901
+    # encode("xaby", "abababab", 1) would be more efficiently encoded as
+    #
+    # ["x", [1, 2], [4, 6]]
+    #
+    # where [4, 6] refers to the decoded target itself, in the style of
+    # VCDIFF. See RFC3284 section 3, where COPY 4, 4 + COPY 12, 24 is used.
+    #
+    # this should probably only be allowed with a flag or something.
+    #
+    # note that compress is more efficient for this type of input,
+    # since the "source" is everything to the left of the current position:
+    #
+    # compress("abababab", 1) #=> ["ab", [0, 6]]
+    it "can refer to its own target"
+
     it "encodes strings" do
       codec = BentleyMcIlroy::Codec
       codec.encode("abcdef", "defghiabc", 3).should == [[3, 3], "ghi", [0, 3]]
