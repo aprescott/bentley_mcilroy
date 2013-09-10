@@ -23,7 +23,7 @@ describe BentleyMcIlroy::Codec do
 
     it "handles binary" do
       codec = BentleyMcIlroy::Codec
-      str = ("\x52\303\x66" * 3)
+      str = ("\x52\303\x66" * 3) # this is an invalid UTF-8 string
       str.force_encoding("BINARY") if str.respond_to?(:force_encoding)
 
       codec.compress(str, 3).should == ["\x52\303\x66", [0, 6]]
