@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/aprescott/bentley_mcilroy.png?branch=master)](https://travis-ci.org/aprescott/bentley_mcilroy)
+
 A Ruby implementation of Bentley-McIlroy's data compression scheme to encode
 compressed versions of strings, and compute deltas between source and target.
 
