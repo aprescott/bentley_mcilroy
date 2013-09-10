@@ -125,11 +125,3 @@ the case of no backward extensions, it is `xabcda<2, 3>y`.
 # License
 
 Copyright (c) Adam Prescott, released under the MIT license. See the license file.
-
-# TODO
-
-    compress("abcaaaaaa", 1) -> ["abc", [0, 1], [0, 1], [0, 1], [0, 1], [0, 1], [0, 1]]
-
-Can this be fixed to be: ["abc", [0, 1], [3, 5]] ? Essentially following the paper
-and picking the longest match on a clash (here, index 0 and index 3 are hit for
-index 4, but index 3 leads to a better result when the match is extended forward)

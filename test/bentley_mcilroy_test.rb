@@ -18,8 +18,10 @@ describe BentleyMcIlroy::Codec do
       codec.compress("xabcabcy", 2).should == ["xabca", [2, 2], "y"]
     end
     
-    # "aaaa" should compress down to ["a", [0, 3]]
-    it "picks the longest match on clashes"
+    # compress("abcaaaaaa", 1) turns into ["abc", [0, 1], [0, 1], [0, 1], [0, 1], [0, 1], [0, 1]]
+    # which could instead be ["abc", [0, 1], [3, 5]], where the [3, 5] refers to
+    # the previously encoded [0, 1].
+    it "can refer to previously encoded target data"
 
     it "handles binary" do
       codec = BentleyMcIlroy::Codec
