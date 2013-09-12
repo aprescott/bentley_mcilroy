@@ -9,6 +9,7 @@ Gem::Specification.new do |s|
   s.files        = Dir["{lib/**/*,test/**/*}"] + %w[LICENSE README.md bentley_mcilroy.gemspec rakefile]
   s.test_files   = Dir["test/*"]
   s.require_path = "lib"
+  s.license      = "MIT"
   s.add_development_dependency "rake"
   s.add_development_dependency "rspec"
 end
