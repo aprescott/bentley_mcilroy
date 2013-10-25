@@ -125,4 +125,3 @@ the case of no backward extensions, it is `xabcda<2, 3>y`.
 # License
 
 Copyright (c) Adam Prescott, released under the MIT license. See the license file.
-Any contributions will be assumed to be under the same terms.
